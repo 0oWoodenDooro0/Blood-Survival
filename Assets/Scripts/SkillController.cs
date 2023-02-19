@@ -25,6 +25,7 @@ public class SkillController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (Game.Instance.gameOver) return;
         Check();
         Shovel();
         Fork();

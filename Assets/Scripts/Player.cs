@@ -31,6 +31,8 @@ public class Player : MonoBehaviour
         {
             _rigidbody2D.velocity = Vector3.zero;
             ChangeAnimation("Dead");
+            leftArm.sprite = null;
+            rightArm.sprite = null;
         }
         else
         {
