@@ -23,8 +23,8 @@ public class EnemySpawner : MonoBehaviour
     private void FixedUpdate()
     {
         if (Game.Instance.gameOver) return;
-        if ((int)(Game.Instance.time / 0.5) == _currentSecond) return;
-        _currentSecond = (int)(Game.Instance.time / 0.5);
+        if ((int)(Game.Instance.time / 0.3) == _currentSecond) return;
+        _currentSecond = (int)(Game.Instance.time / 0.3);
         SpawnEnemy();
     }
 

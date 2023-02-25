@@ -130,6 +130,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 524371629056685528, guid: 123c22308b4dbe94d8f4866f2506d7d8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 524371629056685528, guid: 123c22308b4dbe94d8f4866f2506d7d8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3910676014754283061, guid: 123c22308b4dbe94d8f4866f2506d7d8, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -228,6 +236,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3910676015215238943, guid: 123c22308b4dbe94d8f4866f2506d7d8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8745350720958519126, guid: 123c22308b4dbe94d8f4866f2506d7d8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8745350720958519126, guid: 123c22308b4dbe94d8f4866f2506d7d8, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -16608,7 +16624,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -10
   m_CullingMask:
     serializedVersion: 2
@@ -50859,6 +50875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91da152e1107a9d4eab0c3cf80555fc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 519420031}
   gameOver: 0
   pause: 0
   levelUpCanvas: {fileID: 1409042243}
@@ -50882,9 +50899,9 @@ MonoBehaviour:
   levelMaxExperience: 0
   level: 0
   shovel: 0
-  fork: 0
+  fork: 1
   hook: 0
-  pistol: 1
+  pistol: 0
   rifle: 0
   shotgun: 0
   armor: 0
@@ -51018,7 +51035,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 5
+    OrthographicSize: 10
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0

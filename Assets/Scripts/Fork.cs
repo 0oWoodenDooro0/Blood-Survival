@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Fork : MonoBehaviour
@@ -19,7 +18,7 @@ public class Fork : MonoBehaviour
     {
         var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, angle - 90f);
-        Destroy(gameObject, 3);
+        Destroy(gameObject, 0.5f);
     }
 
     private void FixedUpdate()
@@ -28,6 +27,7 @@ public class Fork : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
         _rigidbody2D.velocity = direction * moveSpeed;
     }
 }

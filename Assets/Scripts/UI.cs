@@ -8,13 +8,14 @@ public class UI : MonoBehaviour
     public Text killAmount;
     public Text level;
     public Slider experience;
+    public Slider playerHealth;
     private int _minute;
     private int _second;
 
     private void Start()
     {
         Game.Instance.experience = 0;
-        Game.Instance.levelMaxExperience = 2;
+        Game.Instance.levelMaxExperience = 10;
     }
 
     private void FixedUpdate()
@@ -29,12 +30,13 @@ public class UI : MonoBehaviour
         killAmount.text = Game.Instance.killAmount.ToString().PadLeft(3, '0');
         level.text = "Lv." + Game.Instance.level;
         experience.value = (float)Game.Instance.experience / Game.Instance.levelMaxExperience;
+        playerHealth.value = (float)Game.Instance.playerHealth / Game.Instance.playerMaxHealth;
     }
 
     private void LevelUp()
     {
         Game.Instance.experience -= Game.Instance.levelMaxExperience;
-        Game.Instance.levelMaxExperience = 1 + (int)Mathf.Pow(Game.Instance.level, 2 - 0.03f * Game.Instance.level);
+        Game.Instance.levelMaxExperience = 20 + (int)Mathf.Pow(Game.Instance.level, 2 - 0.01f * Game.Instance.level);
         Game.Instance.level += 1;
         Game.Instance.pause = true;
     }

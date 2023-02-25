@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2775356958806621884}
   m_Layer: 0
   m_Name: Shotgun Bullet
-  m_TagString: Pistol Bullet
+  m_TagString: Shotgun Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,8 +100,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.000000018626451, y: 0.028061625}
-  m_Size: {x: 0.2764006, y: 0.44447213}
+  m_Offset: {x: -0.000000014901161, y: -0.0010140389}
+  m_Size: {x: 0.22353575, y: 0.44447216}
   m_Direction: 0
 --- !u!50 &2775356958806621885
 Rigidbody2D:
@@ -138,4 +138,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 15
   damage: 10
-  direction: {x: 0, y: 0, z: 0}
+  direction: {x: 0, y: 0}

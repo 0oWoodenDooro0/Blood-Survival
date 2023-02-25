@@ -106,7 +106,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 50
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -128,8 +128,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00025743246, y: -0.0152900815}
-  m_Size: {x: 0.3746494, y: 0.53176296}
+  m_Offset: {x: -0.0024687946, y: -0.03164722}
+  m_Size: {x: 0.7399588, y: 1.0561965}
   m_Direction: 0
 --- !u!95 &328742302478711715
 Animator:
@@ -185,7 +185,7 @@ MonoBehaviour:
   - {fileID: -353751291, guid: 95b8f025eedcc7b4e978adb490fee41e, type: 3}
   - {fileID: -144335857, guid: 95b8f025eedcc7b4e978adb490fee41e, type: 3}
   - {fileID: 1772703093, guid: 95b8f025eedcc7b4e978adb490fee41e, type: 3}
-  shovelSpeed: 20
+  shovelSpeed: 10
   shovelRadius: 2.5
 --- !u!1 &1927984635134087397
 GameObject:

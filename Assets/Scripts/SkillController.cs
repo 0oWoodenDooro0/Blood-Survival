@@ -22,16 +22,26 @@ public class SkillController : MonoBehaviour
     private int _health;
     private int _damage;
     private Vector3 _direction;
+    private Vector3 _mousePosition;
+    private GameObject[] _enemies;
 
     private void FixedUpdate()
     {
-        if (Game.Instance.gameOver) return;
+        if (Game.Instance.gameOver)
+        {
+            foreach (var shovel in _shovels)
+            {
+                Destroy(shovel);
+            }
+            return;
+        }
         Check();
         Shovel();
         Fork();
         Pistol();
         Rifle();
         Shotgun();
+        _enemies = null;
     }
 
     private void Check()
@@ -153,9 +163,9 @@ public class SkillController : MonoBehaviour
     {
         _shovelTime += Time.deltaTime;
         if (_shovels.Count == 0) return;
-        for (var i = 0; i < Game.Instance.shovel; i++)
+        for (var i = 0; i < _shovels.Count; i++)
         {
-            var angle = i * 360f / Game.Instance.shovel + _shovelTime * shovelSpeed * (Game.Instance.shovel + 1);
+            var angle = i * 360f / Game.Instance.shovel + _shovelTime * shovelSpeed * (Game.Instance.shovel + 10);
             var offset = Quaternion.Euler(0, 0, angle) * Vector3.right * shovelRadius;
             _shovels[i].transform.position = transform.position + offset;
             _shovels[i].transform.rotation = Quaternion.Euler(0, 0, angle - 90);
@@ -166,11 +176,13 @@ public class SkillController : MonoBehaviour
     {
         if (Game.Instance.fork == 0) return;
         _forkTime += Time.deltaTime;
-        if (_forkTime >= 3 && EnemyClosed(4))
+        if (_forkTime >= 3 - _fork * 0.2)
         {
             _forkTime = 0;
             var fork = Instantiate(Game.Instance.forkPrefab, transform.position, Quaternion.identity);
-            fork.GetComponent<Fork>().direction = _direction;
+            _mousePosition = Game.Instance.mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            _mousePosition.z = 0f;
+            fork.GetComponent<Fork>().direction = (_mousePosition - transform.position).normalized;
         }
     }
 
@@ -178,7 +190,7 @@ public class SkillController : MonoBehaviour
     {
         if (Game.Instance.pistol == 0) return;
         _pistolTime += Time.deltaTime;
-        if (_pistolTime >= 2 && EnemyClosed(6))
+        if (_pistolTime >= 2 - _pistol * 0.1 && EnemyClosed(6))
         {
             _pistolTime = 0;
             var pistolBullet = Instantiate(Game.Instance.pistolBulletPrefab, transform.position, Quaternion.identity);
@@ -190,7 +202,7 @@ public class SkillController : MonoBehaviour
     {
         if (Game.Instance.rifle == 0) return;
         _rifleTime += Time.deltaTime;
-        if (_rifleTime >= 0.1 && EnemyClosed(6))
+        if (_rifleTime >= 0.1 && EnemyClosed(10))
         {
             _rifleTime = 0;
             var rifleBullet = Instantiate(Game.Instance.rifleBulletPrefab, transform.position, Quaternion.identity);
@@ -202,36 +214,41 @@ public class SkillController : MonoBehaviour
     {
         if (Game.Instance.shotgun == 0) return;
         _shotgunTime += Time.deltaTime;
-        if (_shotgunTime >= 2 && EnemyClosed(6))
+        if (_shotgunTime >= 2 - _shotgun * 0.1 && EnemyClosed(4))
         {
             _shotgunTime = 0;
             var shotgunBullet = Instantiate(Game.Instance.shotgunBulletPrefab, transform.position, Quaternion.identity);
-            shotgunBullet.GetComponent<FollowBullet>().direction = Quaternion.Euler(0f, 0f, 40f) * _direction;
-            shotgunBullet = Instantiate(Game.Instance.shotgunBulletPrefab, transform.position, Quaternion.identity);
             shotgunBullet.GetComponent<FollowBullet>().direction = Quaternion.Euler(0f, 0f, 20f) * _direction;
+            shotgunBullet = Instantiate(Game.Instance.shotgunBulletPrefab, transform.position, Quaternion.identity);
+            shotgunBullet.GetComponent<FollowBullet>().direction = Quaternion.Euler(0f, 0f, 10f) * _direction;
             shotgunBullet = Instantiate(Game.Instance.shotgunBulletPrefab, transform.position, Quaternion.identity);
             shotgunBullet.GetComponent<FollowBullet>().direction = _direction;
             shotgunBullet = Instantiate(Game.Instance.shotgunBulletPrefab, transform.position, Quaternion.identity);
-            shotgunBullet.GetComponent<FollowBullet>().direction = Quaternion.Euler(0f, 0f, -20f) * _direction;
+            shotgunBullet.GetComponent<FollowBullet>().direction = Quaternion.Euler(0f, 0f, -10f) * _direction;
             shotgunBullet = Instantiate(Game.Instance.shotgunBulletPrefab, transform.position, Quaternion.identity);
-            shotgunBullet.GetComponent<FollowBullet>().direction = Quaternion.Euler(0f, 0f, -40f) * _direction;
+            shotgunBullet.GetComponent<FollowBullet>().direction = Quaternion.Euler(0f, 0f, -20f) * _direction;
         }
     }
 
     private bool EnemyClosed(float searchDistance)
     {
-        var closestDistance = Mathf.Infinity;
-        var enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (var enemy in enemies)
+        if (_enemies == null)
         {
-            var distance = Vector3.Distance(Game.Instance.player.transform.position, enemy.transform.position);
-            if (distance < closestDistance && distance < searchDistance)
+            _enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        }
+
+        var rangedEnemies = new List<Vector3>();
+        foreach (var enemy in _enemies)
+        {
+            var distance = Vector3.Distance(transform.position, enemy.transform.position);
+            if (distance < searchDistance)
             {
-                closestDistance = distance;
-                _direction = (enemy.transform.position - transform.position).normalized;
+                rangedEnemies.Add(enemy.transform.position);
             }
         }
 
-        return !float.IsPositiveInfinity(closestDistance);
+        if (rangedEnemies.Count == 0) return false;
+        _direction = (rangedEnemies[Random.Range(0, rangedEnemies.Count)] - transform.position).normalized;
+        return true;
     }
 }

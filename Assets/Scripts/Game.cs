@@ -3,6 +3,7 @@ using UnityEngine.Serialization;
 
 public class Game : MonoBehaviour
 {
+    public Camera mainCamera;
     [Header("Game")] public static Game Instance;
     public bool gameOver;
     public bool pause;
@@ -10,7 +11,7 @@ public class Game : MonoBehaviour
     public Player playerScript;
     public GameObject player;
     [Header("Player")] public float playerMoveSpeed;
-    public int playerHealth;
+    public float playerHealth;
     public int playerMaxHealth;
     public float playerArmor;
     [Header("Prefab")] public GameObject playerPrefab;
@@ -41,7 +42,7 @@ public class Game : MonoBehaviour
     {
         Instance = this;
         gameOver = false;
-        pause = true;
+        pause = false;
         player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
         playerScript = player.GetComponent<Player>();
         playerMoveSpeed = 2f;

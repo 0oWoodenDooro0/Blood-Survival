@@ -12,7 +12,6 @@ public class LevelUp : MonoBehaviour
 
     private void Awake()
     {
-        RandomSelection();
         for (var i = 0; i < buttons.Length; i++)
         {
             var index = i;

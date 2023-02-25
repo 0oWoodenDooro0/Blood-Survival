@@ -10,11 +10,11 @@ public class Player : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private string _currentState;
 
-    private void OnCollisionEnter2D(Collision2D col)
+    private void OnCollisionStay2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Enemy"))
         {
-            Game.Instance.playerHealth -= (int)(col.gameObject.GetComponent<Enemy>().damage * (1 - Game.Instance.playerArmor));
+            Game.Instance.playerHealth -= (col.gameObject.GetComponent<Enemy>().damage * (1 - Game.Instance.playerArmor) * Time.deltaTime);
         }
     }
 

@@ -22,7 +22,6 @@ public class Enemy : MonoBehaviour
             case "Fork":
                 health -= (col.gameObject.GetComponent<Fork>().damage + (Game.Instance.fork - 1) * 10) * (1 + .1f * Game.Instance.damage);
                 StartCoroutine(Hurt());
-                Destroy(col.gameObject);
                 break;
             case "Pistol Bullet":
                 health -= (col.gameObject.GetComponent<FollowBullet>().damage + (Game.Instance.pistol - 1) * 10) * (1 + .1f * Game.Instance.damage);
@@ -31,6 +30,11 @@ public class Enemy : MonoBehaviour
                 break;
             case "Rifle Bullet":
                 health -= (col.gameObject.GetComponent<FollowBullet>().damage + (Game.Instance.rifle - 1) * 2) * (1 + .1f * Game.Instance.damage);
+                StartCoroutine(Hurt());
+                Destroy(col.gameObject);
+                break;
+            case "Shotgun Bullet":
+                health -= (col.gameObject.GetComponent<FollowBullet>().damage + (Game.Instance.shotgun - 1) * 5) * (1 + .1f * Game.Instance.damage);
                 StartCoroutine(Hurt());
                 Destroy(col.gameObject);
                 break;
