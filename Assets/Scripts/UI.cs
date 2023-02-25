@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,6 +25,7 @@ public class UI : MonoBehaviour
         {
             LevelUp();
         }
+
         time.text = _minute.ToString().PadLeft(2, '0') + ":" + _second.ToString().PadLeft(2, '0');
         killAmount.text = Game.Instance.killAmount.ToString().PadLeft(3, '0');
         level.text = "Lv." + Game.Instance.level;
@@ -38,6 +38,12 @@ public class UI : MonoBehaviour
         Game.Instance.experience -= Game.Instance.levelMaxExperience;
         Game.Instance.levelMaxExperience = 20 + (int)Mathf.Pow(Game.Instance.level, 2 - 0.01f * Game.Instance.level);
         Game.Instance.level += 1;
-        Game.Instance.pause = true;
+        Pause();
+    }
+
+    private void Pause()
+    {
+        Game.Instance.levelUp.SetActive(true);
+        Game.Instance.levelUp.GetComponent<LevelUp>().RandomSelection();
     }
 }

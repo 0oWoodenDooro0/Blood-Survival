@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class LevelUp : MonoBehaviour
 {
     public Image[] images;
     public Sprite[] sprites;
-    public Button[] buttons;
+    public GameObject[] buttons;
     private List<int> _selections;
     private List<int> _imageSprites;
 
@@ -15,7 +16,7 @@ public class LevelUp : MonoBehaviour
         for (var i = 0; i < buttons.Length; i++)
         {
             var index = i;
-            buttons[i].onClick.AddListener(() => ChoiceOnClick(_imageSprites[index]));
+            buttons[i].GetComponent<Button>().onClick.AddListener(() => ChoiceOnClick(_imageSprites[index]));
         }
     }
 
@@ -41,6 +42,8 @@ public class LevelUp : MonoBehaviour
         {
             images[i].sprite = sprites[_imageSprites[i]];
         }
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(buttons[0]);
     }
 
     private void ChoiceOnClick(int index)
@@ -79,7 +82,6 @@ public class LevelUp : MonoBehaviour
                 Game.Instance.damage += 1;
                 break;
         }
-
-        Game.Instance.pause = false;
+        gameObject.SetActive(false);
     }
 }

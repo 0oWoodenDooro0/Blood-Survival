@@ -33,8 +33,10 @@ public class SkillController : MonoBehaviour
             {
                 Destroy(shovel);
             }
+
             return;
         }
+
         Check();
         Shovel();
         Fork();
@@ -180,9 +182,7 @@ public class SkillController : MonoBehaviour
         {
             _forkTime = 0;
             var fork = Instantiate(Game.Instance.forkPrefab, transform.position, Quaternion.identity);
-            _mousePosition = Game.Instance.mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            _mousePosition.z = 0f;
-            fork.GetComponent<Fork>().direction = (_mousePosition - transform.position).normalized;
+            fork.GetComponent<Fork>().direction = Game.Instance.direction;
         }
     }
 

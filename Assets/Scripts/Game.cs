@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
 public class Game : MonoBehaviour
@@ -6,8 +8,11 @@ public class Game : MonoBehaviour
     public Camera mainCamera;
     [Header("Game")] public static Game Instance;
     public bool gameOver;
-    public bool pause;
-    public GameObject levelUpCanvas;
+    public GameObject levelUp;
+    public bool directionAttack;
+    public bool isController;
+    public Vector3 mousePosition;
+    public Vector3 direction;
     public Player playerScript;
     public GameObject player;
     [Header("Player")] public float playerMoveSpeed;
@@ -42,18 +47,19 @@ public class Game : MonoBehaviour
     {
         Instance = this;
         gameOver = false;
-        pause = false;
         player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
         playerScript = player.GetComponent<Player>();
+        directionAttack = false;
         playerMoveSpeed = 2f;
-        playerHealth = 100;
-        playerMaxHealth = 100;
+        playerHealth = 50;
+        playerMaxHealth = 50;
         playerArmor = 0f;
     }
 
     private void FixedUpdate()
     {
         if (gameOver) return;
+
         if (playerHealth <= 0)
         {
             gameOver = true;
@@ -61,25 +67,13 @@ public class Game : MonoBehaviour
         }
 
         time += Time.deltaTime;
-        switch (pause)
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(1))
         {
-            case true when !levelUpCanvas.activeSelf:
-                Pause();
-                break;
-            case false when levelUpCanvas.activeSelf:
-                Resume();
-                break;
+            directionAttack = !directionAttack;
         }
-    }
-
-    private void Resume()
-    {
-        levelUpCanvas.SetActive(false);
-    }
-
-    private void Pause()
-    {
-        levelUpCanvas.SetActive(true);
-        levelUpCanvas.GetComponent<LevelUp>().RandomSelection();
     }
 }
