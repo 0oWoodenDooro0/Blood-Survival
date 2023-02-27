@@ -1,9 +1,10 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    [Header("Game")] public GameAttribute gameAttribute;
+    [Header("Player")] public PlayerAttribute playerAttribute;
     public Vector3 inputVector;
     public SpriteRenderer leftArm;
     public SpriteRenderer rightArm;
@@ -18,7 +19,7 @@ public class Player : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Enemy"))
         {
-            Game.Instance.playerHealth -= (col.gameObject.GetComponent<Enemy>().damage * (1 - Game.Instance.playerArmor) * Time.deltaTime);
+            playerAttribute.health -= (col.gameObject.GetComponent<Enemy>().damage * (1 - playerAttribute.armor) * Time.deltaTime);
         }
     }
 
@@ -42,25 +43,24 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (Game.Instance.gameOver)
+        if (gameAttribute.gameOver)
         {
             _rigidbody2D.velocity = Vector3.zero;
             ChangeAnimation("Dead");
             leftArm.sprite = null;
             rightArm.sprite = null;
         }
-        else
-        {
-            Direction();
-            Movement();
-        }
+
+        if (gameAttribute.pause) return;
+        Direction();
+        Movement();
     }
 
     private void Movement()
     {
         inputVector = _playerControls.Controls.Movement.ReadValue<Vector2>().normalized;
 
-        var moveVector = inputVector * Game.Instance.playerMoveSpeed;
+        var moveVector = inputVector * playerAttribute.moveSpeed;
 
         if (inputVector.x != 0 || inputVector.y != 0)
         {
@@ -83,61 +83,61 @@ public class Player : MonoBehaviour
 
     public void OnDeviceChange(PlayerInput playerInput)
     {
-        Game.Instance.isController = playerInput.currentControlScheme.Equals("Controller") ? true : false;
+        gameAttribute.isController = playerInput.currentControlScheme.Equals("Controller") ? true : false;
     }
 
     private void Direction()
     {
         var aim = _playerControls.Controls.Aim.ReadValue<Vector2>();
-        if (Game.Instance.directionAttack)
+        if (gameAttribute.directionAttack)
         {
-            switch (Game.Instance.isController)
+            switch (gameAttribute.isController)
             {
                 case true when aim != Vector2.zero:
-                    Game.Instance.direction = aim.normalized;
+                    gameAttribute.direction = aim.normalized;
                     break;
                 case true:
-                    Game.Instance.direction = inputVector;
+                    gameAttribute.direction = inputVector;
                     break;
                 default:
-                    Game.Instance.mousePosition =  Game.Instance.mainCamera.ScreenToWorldPoint(aim);
-                    Game.Instance.mousePosition.z = 0f;
-                    Game.Instance.direction = (Game.Instance.mousePosition - transform.position).normalized;
+                    var mousePosition = Game.Instance.mainCamera.ScreenToWorldPoint(aim);
+                    mousePosition.z = 0f;
+                    gameAttribute.direction = (mousePosition - transform.position).normalized;
                     break;
             }
         }
         else
         {
-            if (Game.Instance.isController && aim != Vector2.zero)
+            if (gameAttribute.isController && aim != Vector2.zero)
             {
-                Game.Instance.direction = aim.normalized;
+                gameAttribute.direction = aim.normalized;
             }
             else
             {
-                Game.Instance.direction = inputVector;
+                gameAttribute.direction = inputVector;
             }
         }
 
-        if (Game.Instance.direction == Vector3.zero) return;
-        _spriteRenderer.flipX = Game.Instance.direction.x switch
+        if (gameAttribute.direction == Vector3.zero) return;
+        _spriteRenderer.flipX = gameAttribute.direction.x switch
         {
             > 0 => false,
             < 0 => true,
             _ => _spriteRenderer.flipX
         };
-        leftArm.flipX = Game.Instance.direction.x switch
+        leftArm.flipX = gameAttribute.direction.x switch
         {
             > 0 => false,
             < 0 => true,
             _ => leftArm.flipX
         };
-        rightArm.flipX = Game.Instance.direction.x switch
+        rightArm.flipX = gameAttribute.direction.x switch
         {
             > 0 => false,
             < 0 => true,
             _ => rightArm.flipX
         };
-        var angle = Mathf.Atan2(Game.Instance.direction.y, Game.Instance.direction.x) * Mathf.Rad2Deg;
+        var angle = Mathf.Atan2(gameAttribute.direction.y, gameAttribute.direction.x) * Mathf.Rad2Deg;
         var offset = Quaternion.Euler(0, 0, angle) * Vector3.right * 1.5f;
         arrow.transform.position = transform.position + offset;
         arrow.transform.rotation = Quaternion.Euler(0, 0, angle - 90);

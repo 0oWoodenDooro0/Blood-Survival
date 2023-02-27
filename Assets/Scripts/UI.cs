@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
+    [Header("Player")] public PlayerAttribute playerAttribute;
+    [Header("Game")] public GameAttribute gameAttribute;
     public Text time;
     public Text killAmount;
     public Text level;
@@ -13,36 +15,37 @@ public class UI : MonoBehaviour
 
     private void Start()
     {
-        Game.Instance.experience = 0;
-        Game.Instance.levelMaxExperience = 10;
+        gameAttribute.experience = 0;
+        gameAttribute.levelMaxExperience = 10;
     }
 
     private void FixedUpdate()
     {
-        _minute = (int)Game.Instance.time / 60;
-        _second = (int)Game.Instance.time % 60;
-        if (Game.Instance.experience >= Game.Instance.levelMaxExperience)
+        _minute = (int)gameAttribute.time / 60;
+        _second = (int)gameAttribute.time % 60;
+        if (gameAttribute.experience >= gameAttribute.levelMaxExperience)
         {
             LevelUp();
         }
 
         time.text = _minute.ToString().PadLeft(2, '0') + ":" + _second.ToString().PadLeft(2, '0');
-        killAmount.text = Game.Instance.killAmount.ToString().PadLeft(3, '0');
-        level.text = "Lv." + Game.Instance.level;
-        experience.value = (float)Game.Instance.experience / Game.Instance.levelMaxExperience;
-        playerHealth.value = (float)Game.Instance.playerHealth / Game.Instance.playerMaxHealth;
+        killAmount.text = gameAttribute.killAmount.ToString().PadLeft(3, '0');
+        level.text = "Lv." + gameAttribute.level;
+        experience.value = (float)gameAttribute.experience / gameAttribute.levelMaxExperience;
+        playerHealth.value = playerAttribute.health / playerAttribute.maxHealth;
     }
 
     private void LevelUp()
     {
-        Game.Instance.experience -= Game.Instance.levelMaxExperience;
-        Game.Instance.levelMaxExperience = 20 + (int)Mathf.Pow(Game.Instance.level, 2 - 0.01f * Game.Instance.level);
-        Game.Instance.level += 1;
+        gameAttribute.experience -= gameAttribute.levelMaxExperience;
+        gameAttribute.levelMaxExperience = 20 + (int)Mathf.Pow(gameAttribute.level, 2 - 0.01f * gameAttribute.level);
+        gameAttribute.level += 1;
         Pause();
     }
 
     private void Pause()
     {
+        gameAttribute.pause = true;
         Game.Instance.levelUp.SetActive(true);
         Game.Instance.levelUp.GetComponent<LevelUp>().RandomSelection();
     }

@@ -22,7 +22,7 @@ public class FollowBullet : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Game.Instance.gameOver)
+        if (Game.Instance.gameAttribute.gameOver)
         {
             Destroy(gameObject);
         }

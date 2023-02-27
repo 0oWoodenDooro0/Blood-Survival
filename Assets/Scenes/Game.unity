@@ -50907,18 +50907,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 519420031}
-  gameOver: 0
   levelUp: {fileID: 432351577}
-  directionAttack: 0
-  isController: 0
-  mousePosition: {x: 0, y: 0, z: 0}
-  direction: {x: 0, y: 0, z: 0}
-  playerScript: {fileID: 0}
   player: {fileID: 0}
-  playerMoveSpeed: 2
-  playerHealth: 100
-  playerMaxHealth: 100
-  playerArmor: 0
+  playerScript: {fileID: 0}
+  gameAttribute: {fileID: 11400000, guid: 248b377546ba53240af58f0a221bb6f8, type: 2}
+  playerAttribute: {fileID: 11400000, guid: b4428332301b1274d919d7eb1fee53f4, type: 2}
+  skillAttribute: {fileID: 11400000, guid: 4615164a758bc9e4cbef9cef08e1a69f, type: 2}
   playerPrefab: {fileID: 328742302478711712, guid: fc2c2289a8923d74fbf7e0be86d0c2f7, type: 3}
   enemy0Prefab: {fileID: 51664252651052228, guid: d7ea1342cbe23ad44b05a8e85a7671f0, type: 3}
   experiencePrefab: {fileID: 1119728852347199936, guid: 7cd13ef42a4e5f043b1159e39e35b70b, type: 3}
@@ -50927,21 +50921,6 @@ MonoBehaviour:
   pistolBulletPrefab: {fileID: 5021185953802049870, guid: b9b3d0117b3b59f4ab4e4d4f1eb5e830, type: 3}
   rifleBulletPrefab: {fileID: 1388506681648707621, guid: ce1edabb3e6bc834ba57b05c8381acbf, type: 3}
   shotgunBulletPrefab: {fileID: 2775356958806621881, guid: 6d84cf52740d47c4b9fae040c5ae4579, type: 3}
-  time: 0
-  killAmount: 0
-  experience: 0
-  levelMaxExperience: 0
-  level: 0
-  shovel: 0
-  fork: 1
-  hook: 0
-  pistol: 0
-  rifle: 0
-  shotgun: 0
-  armor: 0
-  shoe: 0
-  maxHp: 0
-  damage: 0
 --- !u!4 &1373574208
 Transform:
   m_ObjectHideFlags: 0
@@ -50969,12 +50948,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2434fe74fd60f634f8fadf8d97ffaa1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseMoveSpeed: 1
-  baseHealth: 10
-  baseDamage: 5
-  moveSpeedIncreaseAmount: 0.1
-  healthIncreaseAmount: 10
-  damageIncreaseAmount: 1
+  enemyAttribute: {fileID: 11400000, guid: 7060e559a1c54cc4c9b83dda558f9b1b, type: 2}
+  gameAttribute: {fileID: 11400000, guid: 248b377546ba53240af58f0a221bb6f8, type: 2}
 --- !u!1 &1523185705
 GameObject:
   m_ObjectHideFlags: 0

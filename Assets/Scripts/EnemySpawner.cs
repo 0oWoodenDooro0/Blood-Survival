@@ -4,12 +4,8 @@ using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [Header("Enemy Base Attributes")] public float baseMoveSpeed;
-    public int baseHealth;
-    public int baseDamage;
-    [Header("Enemy Increase Amount")] public float moveSpeedIncreaseAmount;
-    public int healthIncreaseAmount;
-    public int damageIncreaseAmount;
+    [Header("Enemy")] public EnemyAttribute enemyAttribute;
+    [Header("Game")] public GameAttribute gameAttribute;
     private int _currentSecond;
 
     private void Start()
@@ -22,15 +18,15 @@ public class EnemySpawner : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Game.Instance.gameOver) return;
-        if ((int)(Game.Instance.time / 0.3) == _currentSecond) return;
-        _currentSecond = (int)(Game.Instance.time / 0.3);
+        if (gameAttribute.gameOver) return;
+        if ((int)(gameAttribute.time / 0.3) == _currentSecond) return;
+        _currentSecond = (int)(gameAttribute.time / 0.3);
         SpawnEnemy();
     }
 
     private void SpawnEnemy()
     {
-        var minute = (int)Game.Instance.time / 60;
+        var minute = (int)gameAttribute.time / 60;
         var playerPosition = Game.Instance.player.transform.position;
         var chunk = Random.Range(0, 4);
         var position = Vector3.zero;
@@ -55,8 +51,8 @@ public class EnemySpawner : MonoBehaviour
         }
         var spawner = Instantiate(Game.Instance.enemy0Prefab, position, quaternion.identity);
         var enemyScript = spawner.GetComponent<Enemy>();
-        enemyScript.damage = baseDamage + minute * damageIncreaseAmount;
-        enemyScript.health = baseHealth + minute * healthIncreaseAmount;
-        enemyScript.moveSpeed = baseMoveSpeed + minute * moveSpeedIncreaseAmount;
+        enemyScript.damage = enemyAttribute.damage + minute * enemyAttribute.damageIncreaseAmount;
+        enemyScript.health = enemyAttribute.health + minute * enemyAttribute.healthIncreaseAmount;
+        enemyScript.moveSpeed = enemyAttribute.moveSpeed + minute * enemyAttribute.moveSpeedIncreaseAmount;
     }
 }

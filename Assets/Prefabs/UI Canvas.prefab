@@ -473,8 +473,8 @@ GameObject:
   - component: {fileID: 3910676015215238943}
   - component: {fileID: 3910676015215238928}
   - component: {fileID: 3910676015215238929}
-  - component: {fileID: 3910676015215238930}
   - component: {fileID: 6482725972929049020}
+  - component: {fileID: 3607521535482533427}
   m_Layer: 5
   m_Name: UI Canvas
   m_TagString: Untagged
@@ -553,23 +553,6 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
---- !u!114 &3910676015215238930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3910676015215238931}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &6482725972929049020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -582,11 +565,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 987ad38e638d83e418a00a88136b8b6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerAttribute: {fileID: 11400000, guid: b4428332301b1274d919d7eb1fee53f4, type: 2}
+  gameAttribute: {fileID: 11400000, guid: 248b377546ba53240af58f0a221bb6f8, type: 2}
   time: {fileID: 3910676015353627595}
   killAmount: {fileID: 3910676014223590442}
   level: {fileID: 3910676014925068740}
   experience: {fileID: 3910676016126974616}
   playerHealth: {fileID: 1972058183788341637}
+--- !u!114 &3607521535482533427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3910676015215238931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &3910676015353627598
 GameObject:
   m_ObjectHideFlags: 0

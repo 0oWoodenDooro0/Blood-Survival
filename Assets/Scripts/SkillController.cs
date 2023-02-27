@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class SkillController : MonoBehaviour
 {
+    [Header("Game")] public GameAttribute gameAttribute;
+    [Header("Player")] public PlayerAttribute playerAttribute;
+    [Header("Skill")] public SkillAttribute skillAttribute;
     public Sprite[] sprites;
     [Header("Shovel Attributes")] public float shovelSpeed;
     public float shovelRadius;
@@ -27,7 +30,7 @@ public class SkillController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Game.Instance.gameOver)
+        if (gameAttribute.gameOver)
         {
             foreach (var shovel in _shovels)
             {
@@ -48,7 +51,7 @@ public class SkillController : MonoBehaviour
 
     private void Check()
     {
-        if (_shovels.Count != Game.Instance.shovel)
+        if (_shovels.Count != skillAttribute.shovel)
         {
             if (_shovels.Count == 0)
             {
@@ -59,7 +62,7 @@ public class SkillController : MonoBehaviour
             return;
         }
 
-        if (_fork != Game.Instance.fork)
+        if (_fork != skillAttribute.fork)
         {
             if (_fork == 0)
             {
@@ -70,7 +73,7 @@ public class SkillController : MonoBehaviour
             return;
         }
 
-        if (_hook != Game.Instance.hook)
+        if (_hook != skillAttribute.hook)
         {
             if (_hook == 0)
             {
@@ -81,7 +84,7 @@ public class SkillController : MonoBehaviour
             return;
         }
 
-        if (_pistol != Game.Instance.pistol)
+        if (_pistol != skillAttribute.pistol)
         {
             if (_pistol == 0)
             {
@@ -92,7 +95,7 @@ public class SkillController : MonoBehaviour
             return;
         }
 
-        if (_rifle != Game.Instance.rifle)
+        if (_rifle != skillAttribute.rifle)
         {
             if (_rifle == 0)
             {
@@ -103,7 +106,7 @@ public class SkillController : MonoBehaviour
             return;
         }
 
-        if (_shotgun != Game.Instance.shotgun)
+        if (_shotgun != skillAttribute.shotgun)
         {
             if (_shotgun == 0)
             {
@@ -114,24 +117,24 @@ public class SkillController : MonoBehaviour
             return;
         }
 
-        if (_armor != Game.Instance.armor)
+        if (_armor != skillAttribute.armor)
         {
-            Game.Instance.playerArmor += 0.1f;
+            playerAttribute.armor += 0.1f;
             _armor += 1;
             return;
         }
 
-        if (_shoe != Game.Instance.shoe)
+        if (_shoe != skillAttribute.shoe)
         {
-            Game.Instance.playerMoveSpeed += 0.5f;
+            playerAttribute.moveSpeed += 0.5f;
             _shoe += 1;
             return;
         }
 
-        if (_health != Game.Instance.maxHp)
+        if (_health != skillAttribute.maxHealth)
         {
-            Game.Instance.playerHealth += 50;
-            Game.Instance.playerMaxHealth += 50;
+            playerAttribute.health += 50;
+            playerAttribute.maxHealth += 50;
             _health += 1;
             return;
         }
@@ -167,7 +170,7 @@ public class SkillController : MonoBehaviour
         if (_shovels.Count == 0) return;
         for (var i = 0; i < _shovels.Count; i++)
         {
-            var angle = i * 360f / Game.Instance.shovel + _shovelTime * shovelSpeed * (Game.Instance.shovel + 10);
+            var angle = i * 360f / skillAttribute.shovel + _shovelTime * shovelSpeed * (skillAttribute.shovel + 10);
             var offset = Quaternion.Euler(0, 0, angle) * Vector3.right * shovelRadius;
             _shovels[i].transform.position = transform.position + offset;
             _shovels[i].transform.rotation = Quaternion.Euler(0, 0, angle - 90);
@@ -176,19 +179,19 @@ public class SkillController : MonoBehaviour
 
     private void Fork()
     {
-        if (Game.Instance.fork == 0) return;
+        if (skillAttribute.fork == 0) return;
         _forkTime += Time.deltaTime;
         if (_forkTime >= 3 - _fork * 0.2)
         {
             _forkTime = 0;
             var fork = Instantiate(Game.Instance.forkPrefab, transform.position, Quaternion.identity);
-            fork.GetComponent<Fork>().direction = Game.Instance.direction;
+            fork.GetComponent<Fork>().direction = gameAttribute.direction;
         }
     }
 
     private void Pistol()
     {
-        if (Game.Instance.pistol == 0) return;
+        if (skillAttribute.pistol == 0) return;
         _pistolTime += Time.deltaTime;
         if (_pistolTime >= 2 - _pistol * 0.1 && EnemyClosed(6))
         {
@@ -200,7 +203,7 @@ public class SkillController : MonoBehaviour
 
     private void Rifle()
     {
-        if (Game.Instance.rifle == 0) return;
+        if (skillAttribute.rifle == 0) return;
         _rifleTime += Time.deltaTime;
         if (_rifleTime >= 0.1 && EnemyClosed(10))
         {
@@ -212,7 +215,7 @@ public class SkillController : MonoBehaviour
 
     private void Shotgun()
     {
-        if (Game.Instance.shotgun == 0) return;
+        if (skillAttribute.shotgun == 0) return;
         _shotgunTime += Time.deltaTime;
         if (_shotgunTime >= 2 - _shotgun * 0.1 && EnemyClosed(4))
         {

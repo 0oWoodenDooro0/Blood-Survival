@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c04aadbbcc337e64a8e7802906b7de23, type: 3}
+  m_Name: GameAttribute
+  m_EditorClassIdentifier: 
+  gameOver: 0
+  pause: 0
+  time: 29.78049
+  killAmount: 10
+  experience: 6
+  levelMaxExperience: 20
+  level: 1
+  directionAttack: 1
+  isController: 0
+  direction: {x: -0.8716072, y: -0.49020505, z: 0}

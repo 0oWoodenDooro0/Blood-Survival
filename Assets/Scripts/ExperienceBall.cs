@@ -12,7 +12,7 @@ public class ExperienceBall : MonoBehaviour
             var distance = Vector3.Distance(other.gameObject.transform.position, transform.position);
             if (distance < 0.5)
             {
-                Game.Instance.experience += 1;
+                Game.Instance.gameAttribute.experience += 1;
                 Destroy(gameObject);
             }
             var direction = (other.gameObject.transform.position - transform.position).normalized;

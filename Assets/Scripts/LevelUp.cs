@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class LevelUp : MonoBehaviour
 {
+    [Header("Skill")] public SkillAttribute skillAttribute;
     public Image[] images;
     public Sprite[] sprites;
     public GameObject[] buttons;
@@ -17,6 +18,15 @@ public class LevelUp : MonoBehaviour
         {
             var index = i;
             buttons[i].GetComponent<Button>().onClick.AddListener(() => ChoiceOnClick(_imageSprites[index]));
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.anyKey && EventSystem.current.currentSelectedGameObject == null)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(buttons[0]);
         }
     }
 
@@ -42,6 +52,7 @@ public class LevelUp : MonoBehaviour
         {
             images[i].sprite = sprites[_imageSprites[i]];
         }
+
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(buttons[0]);
     }
@@ -52,36 +63,38 @@ public class LevelUp : MonoBehaviour
         switch (index)
         {
             case 0:
-                Game.Instance.shovel += 1;
+                skillAttribute.shovel += 1;
                 break;
             case 1:
-                Game.Instance.fork += 1;
+                skillAttribute.fork += 1;
                 break;
             case 2:
-                Game.Instance.hook += 1;
+                skillAttribute.hook += 1;
                 break;
             case 3:
-                Game.Instance.pistol += 1;
+                skillAttribute.pistol += 1;
                 break;
             case 4:
-                Game.Instance.rifle += 1;
+                skillAttribute.rifle += 1;
                 break;
             case 5:
-                Game.Instance.shotgun += 1;
+                skillAttribute.shotgun += 1;
                 break;
             case 6:
-                Game.Instance.armor += 1;
+                skillAttribute.armor += 1;
                 break;
             case 7:
-                Game.Instance.shoe += 1;
+                skillAttribute.shoe += 1;
                 break;
             case 8:
-                Game.Instance.maxHp += 1;
+                skillAttribute.maxHealth += 1;
                 break;
             case 9:
-                Game.Instance.damage += 1;
+                skillAttribute.damage += 1;
                 break;
         }
+
+        Game.Instance.gameAttribute.pause = false;
         gameObject.SetActive(false);
     }
 }

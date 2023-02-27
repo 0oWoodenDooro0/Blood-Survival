@@ -157,6 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ef0ea3ccd9ad94fba59df96c631853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillAttribute: {fileID: 11400000, guid: 4615164a758bc9e4cbef9cef08e1a69f, type: 2}
   moveSpeed: 1
-  damage: 5
   health: 10
+  damage: 5

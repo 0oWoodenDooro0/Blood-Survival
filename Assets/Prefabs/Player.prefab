@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 328742302478711645}
   - component: {fileID: 328742302478711644}
   - component: {fileID: 328742302478711715}
-  - component: {fileID: 7135943207897854909}
-  - component: {fileID: 1803510726399890067}
   - component: {fileID: 7089070136379630022}
+  - component: {fileID: 1803510726399890067}
+  - component: {fileID: 7135943207897854909}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -153,43 +153,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &7135943207897854909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 328742302478711712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ca48acdbd9a17c488912aa2174321df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputVector: {x: 0, y: 0, z: 0}
-  leftArm: {fileID: 7984694822028507401}
-  rightArm: {fileID: 5033105589398544191}
-  arrow: {fileID: 6357199240823006308}
---- !u!114 &1803510726399890067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 328742302478711712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43c767c206c42334da1b89e9c8d99ea1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 143021600, guid: 95b8f025eedcc7b4e978adb490fee41e, type: 3}
-  - {fileID: -1972582131, guid: 95b8f025eedcc7b4e978adb490fee41e, type: 3}
-  - {fileID: 1349035616, guid: 95b8f025eedcc7b4e978adb490fee41e, type: 3}
-  - {fileID: -353751291, guid: 95b8f025eedcc7b4e978adb490fee41e, type: 3}
-  - {fileID: -144335857, guid: 95b8f025eedcc7b4e978adb490fee41e, type: 3}
-  - {fileID: 1772703093, guid: 95b8f025eedcc7b4e978adb490fee41e, type: 3}
-  shovelSpeed: 10
-  shovelRadius: 2.5
 --- !u!114 &7089070136379630022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,6 +204,48 @@ MonoBehaviour:
   m_DefaultActionMap: Controls
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1803510726399890067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328742302478711712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43c767c206c42334da1b89e9c8d99ea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameAttribute: {fileID: 11400000, guid: 248b377546ba53240af58f0a221bb6f8, type: 2}
+  playerAttribute: {fileID: 11400000, guid: b4428332301b1274d919d7eb1fee53f4, type: 2}
+  skillAttribute: {fileID: 11400000, guid: 4615164a758bc9e4cbef9cef08e1a69f, type: 2}
+  sprites:
+  - {fileID: 143021600, guid: 95b8f025eedcc7b4e978adb490fee41e, type: 3}
+  - {fileID: -1972582131, guid: 95b8f025eedcc7b4e978adb490fee41e, type: 3}
+  - {fileID: 1349035616, guid: 95b8f025eedcc7b4e978adb490fee41e, type: 3}
+  - {fileID: -353751291, guid: 95b8f025eedcc7b4e978adb490fee41e, type: 3}
+  - {fileID: -144335857, guid: 95b8f025eedcc7b4e978adb490fee41e, type: 3}
+  - {fileID: 1772703093, guid: 95b8f025eedcc7b4e978adb490fee41e, type: 3}
+  shovelSpeed: 10
+  shovelRadius: 2.5
+--- !u!114 &7135943207897854909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328742302478711712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ca48acdbd9a17c488912aa2174321df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameAttribute: {fileID: 11400000, guid: 248b377546ba53240af58f0a221bb6f8, type: 2}
+  playerAttribute: {fileID: 11400000, guid: b4428332301b1274d919d7eb1fee53f4, type: 2}
+  inputVector: {x: 0, y: 0, z: 0}
+  leftArm: {fileID: 7984694822028507401}
+  rightArm: {fileID: 5033105589398544191}
+  arrow: {fileID: 6357199240823006308}
 --- !u!1 &1927984635134087397
 GameObject:
   m_ObjectHideFlags: 0

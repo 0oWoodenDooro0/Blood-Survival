@@ -3,7 +3,6 @@ using UnityEngine;
 public class Fork : MonoBehaviour
 {
     [Header("Fork Attributes")] public float moveSpeed;
-    public float searchDistance;
     public int damage;
     private Rigidbody2D _rigidbody2D;
     public Vector3 direction;
@@ -23,7 +22,7 @@ public class Fork : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Game.Instance.gameOver)
+        if (Game.Instance.gameAttribute.gameOver)
         {
             Destroy(gameObject);
         }
