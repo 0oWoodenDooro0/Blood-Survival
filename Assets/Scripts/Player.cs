@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -49,6 +50,7 @@ public class Player : MonoBehaviour
             ChangeAnimation("Dead");
             leftArm.sprite = null;
             rightArm.sprite = null;
+            return;
         }
 
         if (gameAttribute.pause) return;
@@ -112,7 +114,7 @@ public class Player : MonoBehaviour
             {
                 gameAttribute.direction = aim.normalized;
             }
-            else
+            else if (inputVector != Vector3.zero)
             {
                 gameAttribute.direction = inputVector;
             }

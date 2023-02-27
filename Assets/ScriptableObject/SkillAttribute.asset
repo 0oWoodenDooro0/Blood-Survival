@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shovel: 0
   fork: 1
-  hook: 0
-  pistol: 0
-  rifle: 0
+  hook: 1
+  pistol: 1
+  rifle: 1
   shotgun: 0
-  armor: 0
+  armor: 1
   shoe: 0
   maxHealth: 0
   damage: 0

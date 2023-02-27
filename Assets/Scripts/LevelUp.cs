@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class LevelUp : MonoBehaviour
 {
+    [Header("Game")] public PlayerAttribute playerAttribute;
     [Header("Skill")] public SkillAttribute skillAttribute;
     public Image[] images;
     public Sprite[] sprites;
@@ -82,12 +83,16 @@ public class LevelUp : MonoBehaviour
                 break;
             case 6:
                 skillAttribute.armor += 1;
+                playerAttribute.armor += 0.1f;
                 break;
             case 7:
                 skillAttribute.shoe += 1;
+                playerAttribute.moveSpeed += 0.5f;
                 break;
             case 8:
                 skillAttribute.maxHealth += 1;
+                playerAttribute.health += 50;
+                playerAttribute.maxHealth += 50;
                 break;
             case 9:
                 skillAttribute.damage += 1;

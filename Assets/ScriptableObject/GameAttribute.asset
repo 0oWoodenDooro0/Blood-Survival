@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOver: 0
   pause: 0
-  time: 29.78049
-  killAmount: 10
-  experience: 6
-  levelMaxExperience: 20
-  level: 1
+  time: 4.4999967
+  killAmount: 0
+  experience: 0
+  levelMaxExperience: 10
+  level: 0
   directionAttack: 1
   isController: 0
-  direction: {x: -0.8716072, y: -0.49020505, z: 0}
+  direction: {x: -0.871316, y: -0.49072233, z: 0}

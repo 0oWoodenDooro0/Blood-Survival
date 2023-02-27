@@ -14,10 +14,14 @@ public class Game : MonoBehaviour
     public GameObject enemy0Prefab;
     public GameObject experiencePrefab;
     public GameObject shovelPrefab;
+    public GameObject hookPrefab;
     public GameObject forkPrefab;
     public GameObject pistolBulletPrefab;
     public GameObject rifleBulletPrefab;
     public GameObject shotgunBulletPrefab;
+    public GameObject bloodBagPrefab;
+    public GameObject magnetPrefab;
+    private int _killAmount;
 
     private void Awake()
     {
@@ -26,6 +30,7 @@ public class Game : MonoBehaviour
         playerScript = player.GetComponent<Player>();
         playerAttribute.Reset();
         gameAttribute.Reset();
+        skillAttribute.Reset();
     }
 
     private void FixedUpdate()
@@ -38,6 +43,20 @@ public class Game : MonoBehaviour
             return;
         }
 
+        if (_killAmount != gameAttribute.killAmount)
+        {
+            _killAmount += 1;
+            if (_killAmount % 40 == 0)
+            {
+                SpawnObject(bloodBagPrefab);
+            }
+
+            if (_killAmount % 100 == 0)
+            {
+                SpawnObject(magnetPrefab);
+            }
+        }
+
         gameAttribute.time += Time.deltaTime;
     }
 
@@ -47,5 +66,32 @@ public class Game : MonoBehaviour
         {
             gameAttribute.directionAttack = !gameAttribute.directionAttack;
         }
+    }
+
+    private void SpawnObject(GameObject prefab)
+    {
+        var playerPosition = Game.Instance.player.transform.position;
+        var chunk = Random.Range(0, 4);
+        var position = Vector3.zero;
+        switch (chunk)
+        {
+            case 0:
+                position.x = playerPosition.x + 18 + Random.Range(0f, 10f);
+                position.y = playerPosition.y + 10 + Random.Range(0f, 10f);
+                break;
+            case 1:
+                position.x = playerPosition.x - 18 - Random.Range(0f, 10f);
+                position.y = playerPosition.y + 10 + Random.Range(0f, 10f);
+                break;
+            case 2:
+                position.x = playerPosition.x - 18 - Random.Range(0f, 10f);
+                position.y = playerPosition.y - 10 - Random.Range(0f, 10f);
+                break;
+            case 3:
+                position.x = playerPosition.x + 18 + Random.Range(0f, 10f);
+                position.y = playerPosition.y - 10 - Random.Range(0f, 10f);
+                break;
+        }
+        Instantiate(prefab, position, Quaternion.identity);
     }
 }

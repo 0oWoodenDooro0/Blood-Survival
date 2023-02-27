@@ -50917,10 +50917,13 @@ MonoBehaviour:
   enemy0Prefab: {fileID: 51664252651052228, guid: d7ea1342cbe23ad44b05a8e85a7671f0, type: 3}
   experiencePrefab: {fileID: 1119728852347199936, guid: 7cd13ef42a4e5f043b1159e39e35b70b, type: 3}
   shovelPrefab: {fileID: 1578073961517131101, guid: 0eeae5aac8ba2c743a70abd141a8e23a, type: 3}
+  hookPrefab: {fileID: 942097555475849446, guid: 2d3ebb98fc7e86241bf00923477aa001, type: 3}
   forkPrefab: {fileID: 2661078146709935767, guid: c163d13639c8a8048a52443e81636178, type: 3}
   pistolBulletPrefab: {fileID: 5021185953802049870, guid: b9b3d0117b3b59f4ab4e4d4f1eb5e830, type: 3}
   rifleBulletPrefab: {fileID: 1388506681648707621, guid: ce1edabb3e6bc834ba57b05c8381acbf, type: 3}
   shotgunBulletPrefab: {fileID: 2775356958806621881, guid: 6d84cf52740d47c4b9fae040c5ae4579, type: 3}
+  bloodBagPrefab: {fileID: 6831393063774006376, guid: 4e587c0ed282f1c42b0486df85f66614, type: 3}
+  magnetPrefab: {fileID: 7172925180304777890, guid: 309505638e9693747aa5a839b5a7de59, type: 3}
 --- !u!4 &1373574208
 Transform:
   m_ObjectHideFlags: 0

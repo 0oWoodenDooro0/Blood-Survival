@@ -1,6 +1,4 @@
-using Unity.Mathematics;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -33,23 +31,24 @@ public class EnemySpawner : MonoBehaviour
         switch (chunk)
         {
             case 0:
-                position.x = playerPosition.x + 10 + Random.Range(0f, 40f);
+                position.x = playerPosition.x + 18 + Random.Range(0f, 40f);
                 position.y = playerPosition.y + 10 + Random.Range(0f, 40f);
                 break;
             case 1:
-                position.x = playerPosition.x - 10 - Random.Range(0f, 40f);
+                position.x = playerPosition.x - 18 - Random.Range(0f, 40f);
                 position.y = playerPosition.y + 10 + Random.Range(0f, 40f);
                 break;
             case 2:
-                position.x = playerPosition.x - 10 - Random.Range(0f, 40f);
+                position.x = playerPosition.x - 18 - Random.Range(0f, 40f);
                 position.y = playerPosition.y - 10 - Random.Range(0f, 40f);
                 break;
             case 3:
-                position.x = playerPosition.x + 10 + Random.Range(0f, 40f);
+                position.x = playerPosition.x + 18 + Random.Range(0f, 40f);
                 position.y = playerPosition.y - 10 - Random.Range(0f, 40f);
                 break;
         }
-        var spawner = Instantiate(Game.Instance.enemy0Prefab, position, quaternion.identity);
+
+        var spawner = Instantiate(Game.Instance.enemy0Prefab, position, Quaternion.identity);
         var enemyScript = spawner.GetComponent<Enemy>();
         enemyScript.damage = enemyAttribute.damage + minute * enemyAttribute.damageIncreaseAmount;
         enemyScript.health = enemyAttribute.health + minute * enemyAttribute.healthIncreaseAmount;

@@ -20,6 +20,10 @@ public class Enemy : MonoBehaviour
                 health -= (col.gameObject.GetComponent<Shovel>().damage + (skillAttribute.shovel - 1) * 5) * (1 + .1f * skillAttribute.damage);
                 StartCoroutine(Hurt());
                 break;
+            case "Hook":
+                health -= (col.gameObject.GetComponent<Hook>().damage + (skillAttribute.hook - 1) * 5) * (1 + .1f * skillAttribute.damage);
+                StartCoroutine(Hurt());
+                break;
             case "Fork":
                 health -= (col.gameObject.GetComponent<Fork>().damage + (skillAttribute.fork - 1) * 10) * (1 + .1f * skillAttribute.damage);
                 StartCoroutine(Hurt());
