@@ -31,20 +31,20 @@ public class EnemySpawner : MonoBehaviour
         switch (chunk)
         {
             case 0:
-                position.x = playerPosition.x + 18 + Random.Range(0f, 40f);
-                position.y = playerPosition.y + 10 + Random.Range(0f, 40f);
+                position.x = playerPosition.x + 18 + Random.Range(0f, 5f);
+                position.y = playerPosition.y + Random.Range(-20f, 20f);
                 break;
             case 1:
-                position.x = playerPosition.x - 18 - Random.Range(0f, 40f);
-                position.y = playerPosition.y + 10 + Random.Range(0f, 40f);
+                position.x = playerPosition.x - 18 - Random.Range(0f, 5f);
+                position.y = playerPosition.y + Random.Range(-15f, 15f);
                 break;
             case 2:
-                position.x = playerPosition.x - 18 - Random.Range(0f, 40f);
-                position.y = playerPosition.y - 10 - Random.Range(0f, 40f);
+                position.x = playerPosition.x + Random.Range(-23f, 23f);
+                position.y = playerPosition.y + 10 + Random.Range(0f, 10f);
                 break;
             case 3:
-                position.x = playerPosition.x + 18 + Random.Range(0f, 40f);
-                position.y = playerPosition.y - 10 - Random.Range(0f, 40f);
+                position.x = playerPosition.x + Random.Range(-23f, 23f);
+                position.y = playerPosition.y - 10 - Random.Range(0f, 10f);
                 break;
         }
 
