@@ -14,13 +14,39 @@ public class Player : MonoBehaviour
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
     private PlayerControls _playerControls;
+    private ParticleSystem _particleSystem;
     private string _currentState;
+    private int _collisionCount;
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Enemy"))
+        {
+            _collisionCount++;
+            if (_collisionCount == 1)
+            {
+                _particleSystem.Play();
+            }
+        }
+    }
 
     private void OnCollisionStay2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Enemy"))
         {
             playerAttribute.health -= (col.gameObject.GetComponent<Enemy>().damage * (1 - playerAttribute.armor) * Time.deltaTime);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            _collisionCount--;
+            if (_collisionCount == 0)
+            {
+                _particleSystem.Stop();
+            }
         }
     }
 
@@ -39,7 +65,9 @@ public class Player : MonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _particleSystem = GetComponent<ParticleSystem>();
         _playerControls = new PlayerControls();
+        _particleSystem.Stop();
     }
 
     private void Update()
@@ -50,6 +78,10 @@ public class Player : MonoBehaviour
             ChangeAnimation("Dead");
             leftArm.sprite = null;
             rightArm.sprite = null;
+            if (_particleSystem.isPlaying)
+            {
+                _particleSystem.Stop();
+            }
             return;
         }
 
